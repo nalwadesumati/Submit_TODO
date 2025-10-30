@@ -66,21 +66,39 @@ const onEdit = (ele) => {
 }
 
 const onRemove = (ele) => {
-    let getConfirm = confirm("ARE YOU SURE TO REMOVE DATA:");
+    Swal.fire({
+        title: "Are you sure?",
+        text: "ARE YOU SURE TO REMOVE TO-DO ITEM!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
 
-    cl(getConfirm)
-    if (getConfirm === true) {
-        cl(ele);
-        let removeId = ele.closest('li').id
-        cl(removeId);
-        let getIndex = todoArr.findIndex(todo => {
-            return todo.todoId === removeId;
-        })
-        cl(getIndex);
-        todoArr.splice(getIndex, 1)
-        ele.closest('li').remove();
-    }
-}
+            cl(ele);
+            let removeId = ele.closest('li').id;
+            cl(removeId);
+
+            let getIndex = todoArr.findIndex(todo => todo.todoId === removeId);
+            cl(getIndex);
+
+            cl(getIndex);
+            todoArr.splice(getIndex, 1)
+            ele.closest('li').remove();
+
+            Swal.fire({
+                title: "Deleted!",
+                text: "Your To-do item has been removed successfully.",
+                icon: "success",
+                timer: 1500,
+                showConfirmButton: false
+            });
+
+        }
+    });
+};
 
 
 
@@ -124,6 +142,21 @@ const onTodoUpdate = () => {
 
     updateBtn.classList.add("d-none");
     addBtn.classList.remove("d-none");
+
+    Swal.fire({
+        title: 'Updated!',
+        text: 'Your to-do item has been successfully updated.',
+        icon: 'success',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+    });
+    Swal.fire({
+        title: "Updated!",
+        text: "Your to-do item has been updated successfully.",
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false
+    });
 
 
 }
