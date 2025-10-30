@@ -1,0 +1,11 @@
+body {
+  background-color: burlywood;
+}
+
+#todoList li {
+  font-size: 20px;
+}
+
+#todoList li i {
+  cursor: pointer;
+}
